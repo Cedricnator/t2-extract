@@ -9,37 +9,51 @@ def make_request(owner: str, repo: str):
    try:   
       req = requests.get(f"https://api.github.com/repos/{owner}/{repo}", headers={"Authorization": f"Bearer {token}"})  
       if req.status_code == 200:
-         owner = req.json()["owner"]["login"]
-         print(f"{owner} is the owner of the repository {repo}")
-         return owner
+         resp = req.json()
+         print(f"Repository Name: {resp['name']}")
+         print(f"Repository URL: {resp['html_url']}")
+         print(f"Repository Description: {resp['description']}")
+         print(f"Repository Language: {resp['language']}")
+         print(f"Repository Stars: {resp['stargazers_count']}")
+         print(f"Repository Forks: {resp['forks_count']}")
       else:
          print(f"Request failed with status code: {req.status_code}")
    except requests.exceptions.RequestException as e:
       print(f"An error occurred: {e}")
 
-def get_user_info(owner: str):
+def get_repositories_from_user(owner: str):
    try:   
       req = requests.get(f"https://api.github.com/users/{owner}/repos", headers={"Authorization": f"Bearer {token}"})  
       if req.status_code == 200:
+            repositories = []
             resp = req.json()
             for repo in resp:
-               print(f"Repository Name: {repo['name']}")
-               print(f"Repository URL: {repo['html_url']}")
-               print(f"Repository Description: {repo['description']}")
-               print(f"Repository Language: {repo['language']}")
-               print(f"Repository Stars: {repo['stargazers_count']}")
-               print(f"Repository Forks: {repo['forks_count']}")
-               print("-" * 40)
+               repositories.append(repo['name'])
+            return repositories
+               
       else:
          print(f"Request failed with status code: {req.status_code}")
    except requests.exceptions.RequestException as e:
       print(f"An error occurred: {e}")
 
 def extract_repository_from_user(owner: str, repo: str):
-   print(f"Extracting repository {repo} from user {owner}", )
+   try:   
+      req = requests.get(f"https://api.github.com/repos/{owner}/{repo}", headers={"Authorization": f"Bearer {token}"})  
+      if req.status_code == 200:
+         resp = req.json()
+         print(resp)
+      else:
+         print(f"Request failed with status code: {req.status_code}")
+   except requests.exceptions.RequestException as e:
+      print(f"An error occurred: {e}")
 
 def main():
-   get_user_info("cedricnator")
+   repositorys = get_repositories_from_user("cedricnator")
+   if repositorys:
+      print("List of repositories:")
+      for repo in repositorys:
+         make_request("cedricnator", repo)
+   
 
    
 if __name__ == "__main__":
