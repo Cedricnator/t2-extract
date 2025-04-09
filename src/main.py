@@ -21,7 +21,15 @@ def get_user_info(owner: str):
    try:   
       req = requests.get(f"https://api.github.com/users/{owner}/repos", headers={"Authorization": f"Bearer {token}"})  
       if req.status_code == 200:
-         print(f"{req.json()}")
+            resp = req.json()
+            for repo in resp:
+               print(f"Repository Name: {repo['name']}")
+               print(f"Repository URL: {repo['html_url']}")
+               print(f"Repository Description: {repo['description']}")
+               print(f"Repository Language: {repo['language']}")
+               print(f"Repository Stars: {repo['stargazers_count']}")
+               print(f"Repository Forks: {repo['forks_count']}")
+               print("-" * 40)
       else:
          print(f"Request failed with status code: {req.status_code}")
    except requests.exceptions.RequestException as e:
