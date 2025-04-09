@@ -39,8 +39,7 @@ def extract_repository_from_user(owner: str, repo: str):
    print(f"Extracting repository {repo} from user {owner}", )
 
 def main():
-   owner = make_request("Cucharoth", "t2_eda")
-   get_user_info(owner)
+   get_user_info("cedricnator")
 
    
 if __name__ == "__main__":
