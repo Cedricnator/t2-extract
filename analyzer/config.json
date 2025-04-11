@@ -1,0 +1,6 @@
+{
+   "base": "/t2-extract/",
+   "output": "./dist",
+   "faviconFile": "./src/observable.png"
+
+}
