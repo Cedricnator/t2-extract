@@ -105,13 +105,13 @@ class GithubExtractor:
                items = response_data.get("items", [])
                
                if not items:
-                  break  # No hay más resultados
+                  # No hay más resultados
+                  break  
                
                for repo in items:
-                  owner = repo["owner"]["login"]
-                  repo_name = repo["name"]
-                  
-                  commit_count = self.extract_commit_count(owner, repo_name)
+                  # owner = repo["owner"]["login"]
+                  # repo_name = repo["name"]
+                  # commit_count = self.extract_commit_count(owner, repo_name)
                   
                   repositories.append({
                      "id": repo["id"],
@@ -127,7 +127,7 @@ class GithubExtractor:
                      "forks_count": repo["forks_count"],
                      "open_issues_count": repo["open_issues_count"],
                      "watchers": repo["watchers"],
-                     "commit_count": commit_count,
+                     # "commit_count": commit_count,
                   })
                
                page += 1
