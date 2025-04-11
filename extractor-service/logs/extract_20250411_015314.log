@@ -1,0 +1,4 @@
+2025-04-11 01:53:14,611 - github_extractor - INFO - GithubExtractor initialized
+2025-04-11 01:53:14,611 - github_extractor - INFO - Buscando repositorios con query: stars:>10000
+2025-04-11 01:53:14,611 - github_extractor - INFO - Obteniendo página 1 de resultados...
+2025-04-11 01:53:17,517 - github_extractor - INFO - Encontrados 100 repositorios que coinciden con los criterios

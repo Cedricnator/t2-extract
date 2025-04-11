@@ -1,0 +1,13 @@
+2025-04-10 10:52:55,510 - github_extractor - INFO - GithubExtractor initialized
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository expressjs/express found
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository URL: https://github.com/expressjs/express
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Description: Fast, unopinionated, minimalist web framework for node.
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Language: JavaScript
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Stars: 66701
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Forks: 18146
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Open Issues: 176
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository expressjs/express found
+2025-04-10 10:52:56,580 - github_extractor - INFO - Repository Owner: expressjs
+2025-04-10 10:52:56,581 - github_extractor - INFO - Fetching stargazers for expressjs/express...
+2025-04-10 10:52:56,581 - github_extractor - INFO - Fetching page 1 of stargazers...
+2025-04-10 10:52:57,808 - github_extractor - INFO - Found 100 users who starred expressjs/express
