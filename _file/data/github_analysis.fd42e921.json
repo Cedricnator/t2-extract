@@ -1,0 +1,225 @@
+{
+  "summary": {
+   "total_repositories": 22112,
+   "avg_stars": 3490.0492945007236,
+   "avg_forks": 556.0973679450072,
+   "avg_issues": 82.37246743849494
+  },
+  "languages": {
+   "labels": ["JavaScript", "Python", "Go", "Java", "Rust"],
+   "values": [4804, 4740, 4282, 4278, 4008]
+  },
+  "yearly_creation": {
+   "years": [
+      2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019,
+      2020, 2021, 2022, 2023, 2024, 2025
+   ],
+   "counts": [
+      26, 108, 275, 513, 787, 1139, 1498, 2016, 2248, 2227, 2129, 1999, 1900,
+     1512, 1353, 1421, 830, 131
+   ]
+  },
+  "correlations": {
+    "metrics": [
+      "stargazers_count",
+      "watchers",
+      "forks_count",
+      "open_issues_count"
+    ],
+    "matrix": {
+      "stargazers_count": {
+        "stargazers_count": 1.0,
+        "watchers": 1.0,
+        "forks_count": 0.7726832205829355,
+        "open_issues_count": 0.31103102978731284
+      },
+      "watchers": {
+        "stargazers_count": 1.0,
+        "watchers": 1.0,
+        "forks_count": 0.7726832205829355,
+        "open_issues_count": 0.31103102978731284
+      },
+      "forks_count": {
+        "stargazers_count": 0.7726832205829355,
+        "watchers": 0.7726832205829355,
+        "forks_count": 1.0,
+        "open_issues_count": 0.3866392735046636
+      },
+      "open_issues_count": {
+        "stargazers_count": 0.31103102978731284,
+        "watchers": 0.31103102978731284,
+        "forks_count": 0.3866392735046636,
+        "open_issues_count": 1.0
+      }
+    }    
+  },
+  "top_repositories": [
+    {
+      "name": "system-design-primer",
+      "full_name": "donnemartin/system-design-primer",
+      "html_url": "https://github.com/donnemartin/system-design-primer",
+      "stargazers_count": 296001,
+      "forks_count": 49207,
+      "language": "Python"
+    },
+    {
+      "name": "awesome-python",
+      "full_name": "vinta/awesome-python",
+      "html_url": "https://github.com/vinta/awesome-python",
+      "stargazers_count": 240050,
+      "forks_count": 25527,
+      "language": "Python"
+    },
+    {
+      "name": "javascript-algorithms",
+      "full_name": "trekhleb/javascript-algorithms",
+      "html_url": "https://github.com/trekhleb/javascript-algorithms",
+      "stargazers_count": 190902,
+      "forks_count": 30626,
+      "language": "JavaScript"
+    },
+    {
+      "name": "AutoGPT",
+      "full_name": "Significant-Gravitas/AutoGPT",
+      "html_url": "https://github.com/Significant-Gravitas/AutoGPT",
+      "stargazers_count": 174334,
+      "forks_count": 45551,
+      "language": "Python"
+    },
+    {
+      "name": "bootstrap",
+      "full_name": "twbs/bootstrap",
+      "html_url": "https://github.com/twbs/bootstrap",
+      "stargazers_count": 172134,
+      "forks_count": 79080,
+      "language": "JavaScript"
+    },
+    {
+      "name": "stable-diffusion-webui",
+      "full_name": "AUTOMATIC1111/stable-diffusion-webui",
+      "html_url": "https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+      "stargazers_count": 150961,
+      "forks_count": 28107,
+      "language": "Python"
+    },
+    {
+      "name": "JavaGuide",
+      "full_name": "Snailclimb/JavaGuide",
+      "html_url": "https://github.com/Snailclimb/JavaGuide",
+      "stargazers_count": 149145,
+      "forks_count": 45786,
+      "language": "Java"
+    },
+    {
+      "name": "javascript",
+      "full_name": "airbnb/javascript",
+      "html_url": "https://github.com/airbnb/javascript",
+      "stargazers_count": 146508,
+      "forks_count": 26736,
+      "language": "JavaScript"
+    },
+    {
+      "name": "transformers",
+      "full_name": "huggingface/transformers",
+      "html_url": "https://github.com/huggingface/transformers",
+      "stargazers_count": 142774,
+      "forks_count": 28603,
+      "language": "Python"
+    },
+    {
+      "name": "awesome-go",
+      "full_name": "avelino/awesome-go",
+      "html_url": "https://github.com/avelino/awesome-go",
+      "stargazers_count": 141604,
+      "forks_count": 12205,
+      "language": "Go"
+    },
+    {
+      "name": "ollama",
+      "full_name": "ollama/ollama",
+      "html_url": "https://github.com/ollama/ollama",
+      "stargazers_count": 136848,
+      "forks_count": 11383,
+      "language": "Go"
+    },
+    {
+      "name": "youtube-dl",
+      "full_name": "ytdl-org/youtube-dl",
+      "html_url": "https://github.com/ytdl-org/youtube-dl",
+      "stargazers_count": 135058,
+      "forks_count": 10279,
+      "language": "Python"
+    },
+    {
+      "name": "next.js",
+      "full_name": "vercel/next.js",
+      "html_url": "https://github.com/vercel/next.js",
+      "stargazers_count": 130968,
+      "forks_count": 28109,
+      "language": "JavaScript"
+    },
+    {
+      "name": "30-seconds-of-code",
+      "full_name": "Chalarangelo/30-seconds-of-code",
+      "html_url": "https://github.com/Chalarangelo/30-seconds-of-code",
+      "stargazers_count": 123340,
+      "forks_count": 12128,
+      "language": "JavaScript"
+    },
+    {
+      "name": "awesome-chatgpt-prompts",
+      "full_name": "f/awesome-chatgpt-prompts",
+      "html_url": "https://github.com/f/awesome-chatgpt-prompts",
+      "stargazers_count": 122826,
+      "forks_count": 16456,
+      "language": "JavaScript"
+    },
+    {
+      "name": "kubernetes",
+      "full_name": "kubernetes/kubernetes",
+      "html_url": "https://github.com/kubernetes/kubernetes",
+      "stargazers_count": 114324,
+      "forks_count": 40326,
+      "language": "Go"
+    },
+    {
+      "name": "hello-algo",
+      "full_name": "krahets/hello-algo",
+      "html_url": "https://github.com/krahets/hello-algo",
+      "stargazers_count": 111463,
+      "forks_count": 13887,
+      "language": "Java"
+    },
+    {
+      "name": "yt-dlp",
+      "full_name": "yt-dlp/yt-dlp",
+      "html_url": "https://github.com/yt-dlp/yt-dlp",
+      "stargazers_count": 107282,
+      "forks_count": 8430,
+      "language": "Python"
+    },
+    {
+      "name": "axios",
+      "full_name": "axios/axios",
+      "html_url": "https://github.com/axios/axios",
+      "stargazers_count": 106668,
+      "forks_count": 11118,
+      "language": "JavaScript"
+    },
+    {
+      "name": "three.js",
+      "full_name": "mrdoob/three.js",
+      "html_url": "https://github.com/mrdoob/three.js",
+      "stargazers_count": 105621,
+      "forks_count": 35691,
+      "language": "JavaScript"
+    }
+  ],
+  "fork_star_ratio": {
+    "languages": ["Java", "JavaScript", "Python", "Go", "Rust"],
+    "ratios": [
+      0.309572057833325, 0.22314143989785565, 0.20850662754603477,
+      0.164058327063674, 0.11197407640925107
+    ]
+  }
+}
