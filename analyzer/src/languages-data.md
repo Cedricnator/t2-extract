@@ -1,6 +1,6 @@
 ---
 theme: dashboard
-title: Languages Dashboard
+title: GitHub Repository Analysis Dashboard
 ---
 
 <!-- Load and transform the data -->
@@ -65,8 +65,6 @@ Plot.plot({
 })
 ```
 
-
-
 ## Repository Creation Over Years
 ```js
 Plot.plot({
@@ -107,6 +105,7 @@ Plot.plot({
 Plot.plot({
   marginLeft: 150,
   height: 400,
+  width: 2000,
   x: {
     grid: true,
     label: "Stars"
@@ -163,6 +162,33 @@ Plot.plot({
       textAnchor: "middle",
       fontWeight: "bold"
     })
+  ]
+})
+```
+
+
+## Repository Clusters Analysis
+```js
+Plot.plot({
+  height: 400,
+  x: {
+    grid: true,
+    label: "Number of Repositories"
+  },
+  y: {
+    label: null
+  },
+  marks: [
+    Plot.barX([
+      {y: "Standard Repos (avg ~2K stars)", x: data.clusters.repositories_per_cluster['0']},
+      {y: "Popular Repos (avg ~24.5K stars)", x: data.clusters.repositories_per_cluster['1']},
+      {y: "Superstar Repos (avg ~97K stars)", x: data.clusters.repositories_per_cluster['2']}
+    ], {x: "x", y: "y", fill: "y"}),
+    Plot.text([
+      {y: "Standard Repos (avg ~2K stars)", x: data.clusters.repositories_per_cluster['0'] + 100, text: data.clusters.repositories_per_cluster['0'].toLocaleString() + " repos"},
+      {y: "Popular Repos (avg ~24.5K stars)", x: data.clusters.repositories_per_cluster['1'] + 100, text: data.clusters.repositories_per_cluster['1'].toLocaleString() + " repos"},
+      {y: "Superstar Repos (avg ~97K stars)", x: data.clusters.repositories_per_cluster['2'] + 100, text: data.clusters.repositories_per_cluster['2'].toLocaleString() + " repos"}
+    ], {x: "x", y: "y", textAnchor: "start", fontWeight: "bold", dx: 5})
   ]
 })
 ```

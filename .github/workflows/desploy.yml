@@ -31,8 +31,13 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Clean
+        # Desactivar Jekyll
+        run: touch dist/.nojekyll  
+
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: analyzer/dist
           branch: gh-pages
+          clean: true 

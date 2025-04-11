@@ -7,7 +7,7 @@ import time
 def main():
    logger = Logger()
    github_extractor = GithubExtractor()
-   csv_output = CsvOutput(file_name="top_repositories.csv", file_path="../data/")
+   csv_output = CsvOutput(file_name="repositories.csv", file_path="../data/")
    all_repositories = [] 
    
    # Para evitar duplicados
@@ -59,12 +59,7 @@ def main():
       time.sleep(2)
                
    csv_output.save_repositories_to_csv(all_repositories)
-   
-   year_stats = github_extractor.analyze_creation_years(all_repositories)
-   print(f"Años con más creaciones de repositorios populares: {year_stats}")
-   
-   issues_stats = github_extractor.analyze_open_issues(all_repositories)
-   print(f"Estadísticas de problemas abiertos: {issues_stats}")
+   logger.log(f"Total de repositorios guardados: {len(all_repositories)}")
 
    
 if __name__ == "__main__":
