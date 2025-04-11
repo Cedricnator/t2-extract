@@ -57,7 +57,7 @@
 import {define} from "./_observablehq/client.12ba63cf.js";
 import {registerFile} from "./_observablehq/stdlib.82806664.js";
 
-registerFile("./data/github_analysis.json", {"name":"./data/github_analysis.json","mimeType":"application/json","path":"./_file/data/github_analysis.bf727bbc.json","lastModified":1744378507868,"size":7546});
+registerFile("./data/github_analysis.json", {"name":"./data/github_analysis.json","mimeType":"application/json","path":"./_file/data/github_analysis.8f8cd63c.json","lastModified":1744381731915,"size":8284});
 
 define({id: "d26c6f24", inputs: ["FileAttachment"], outputs: ["data"], body: (FileAttachment) => {
 const data = FileAttachment("./data/github_analysis.json").json();
@@ -88,14 +88,14 @@ Math.round(data.summary.avg_issues).toLocaleString()
 ))
 }});
 
-define({id: "2ef8106b", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
+define({id: "2de77ce0", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
 display(await(
 Plot.plot({
-   marginLeft: 100,
-   height: 300,
+  height: 300,
+  width: 2000,
    x: {
       grid: true,
-      label: "Number of Repositories"
+      label: "Número de repositorios"
    },
    y: {
       label: null
@@ -126,12 +126,13 @@ Plot.plot({
 ))
 }});
 
-define({id: "2aa944eb", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
+define({id: "e7b1c1a3", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
 display(await(
 Plot.plot({
   marginBottom: 40,
   height: 400,
   grid: true,
+  width: 2000,
   x: {
     label: "Year",
     tickFormat: d => d.toString()
@@ -162,11 +163,11 @@ Plot.plot({
 ))
 }});
 
-define({id: "14a462e2", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
+define({id: "0be4cdb7", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
 display(await(
 Plot.plot({
   marginLeft: 150,
-  height: 400,
+  height: 600,
   width: 2000,
   x: {
     grid: true,
@@ -194,10 +195,11 @@ Plot.plot({
 ))
 }});
 
-define({id: "82391758", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
+define({id: "cda14bc2", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
 display(await(
 Plot.plot({
   height: 300,
+  width: 2000,
   x: {
     label: null
   },
@@ -230,28 +232,53 @@ Plot.plot({
 ))
 }});
 
-define({id: "2b46146a", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
+define({id: "f052b6c0", mode: "inline", inputs: ["data","display"], body: async (data,display) => {
+display(await(
+data.elbow_method.optimal_k
+))
+}});
+
+define({id: "f052b6c0-1", mode: "inline", inputs: ["data","display"], body: async (data,display) => {
+display(await(
+data.elbow_method.optimal_k
+))
+}});
+
+define({id: "8bf91824", inputs: ["Plot","data","display"], body: async (Plot,data,display) => {
 display(await(
 Plot.plot({
   height: 400,
+  grid: true,
   x: {
-    grid: true,
-    label: "Number of Repositories"
+    label: "Número de Clústeres (k)",
+    domain: [1, 10]
   },
   y: {
-    label: null
+    label: "Suma de Cuadrados Dentro del Clúster (WCSS)",
+    domain: [0, Math.max(...data.elbow_method.points.map(d => d.wcss)) * 1.1]
   },
   marks: [
-    Plot.barX([
-      {y: "Standard Repos (avg ~2K stars)", x: data.clusters.repositories_per_cluster['0']},
-      {y: "Popular Repos (avg ~24.5K stars)", x: data.clusters.repositories_per_cluster['1']},
-      {y: "Superstar Repos (avg ~97K stars)", x: data.clusters.repositories_per_cluster['2']}
-    ], {x: "x", y: "y", fill: "y"}),
-    Plot.text([
-      {y: "Standard Repos (avg ~2K stars)", x: data.clusters.repositories_per_cluster['0'] + 100, text: data.clusters.repositories_per_cluster['0'].toLocaleString() + " repos"},
-      {y: "Popular Repos (avg ~24.5K stars)", x: data.clusters.repositories_per_cluster['1'] + 100, text: data.clusters.repositories_per_cluster['1'].toLocaleString() + " repos"},
-      {y: "Superstar Repos (avg ~97K stars)", x: data.clusters.repositories_per_cluster['2'] + 100, text: data.clusters.repositories_per_cluster['2'].toLocaleString() + " repos"}
-    ], {x: "x", y: "y", textAnchor: "start", fontWeight: "bold", dx: 5})
+    Plot.lineY(data.elbow_method.points, {
+      x: "k", 
+      y: "wcss",
+      stroke: "steelblue",
+      strokeWidth: 2
+    }),
+    Plot.dot(data.elbow_method.points, {
+      x: "k", 
+      y: "wcss",
+      fill: d => d.k === data.elbow_method.optimal_k ? "red" : "steelblue",
+      r: d => d.k === data.elbow_method.optimal_k ? 8 : 5
+    }),
+    // Resaltar el punto de codo
+    Plot.text([{
+      x: data.elbow_method.optimal_k,
+      y: data.elbow_method.points.find(d => d.k === data.elbow_method.optimal_k)?.wcss,
+      text: `K óptimo = ${data.elbow_method.optimal_k}`
+    }], {
+      dy: -15,
+      fontWeight: "bold"
+    })
   ]
 })
 ))
@@ -277,11 +304,11 @@ Plot.plot({
 <nav>
 <div>Contents</div>
 <ol>
-<li class="observablehq-secondary-link"><a href="#languages-distribution">Languages Distribution</a></li>
-<li class="observablehq-secondary-link"><a href="#repository-creation-over-years">Repository Creation Over Years</a></li>
-<li class="observablehq-secondary-link"><a href="#top-10-repositories-by-stars">Top 10 Repositories by Stars</a></li>
-<li class="observablehq-secondary-link"><a href="#fork-star-ratio-by-language">Fork-Star Ratio by Language</a></li>
-<li class="observablehq-secondary-link"><a href="#repository-clusters-analysis">Repository Clusters Analysis</a></li>
+<li class="observablehq-secondary-link"><a href="#distribucion-de-lenguajes-de-programacion">Distribución de lenguajes de programación</a></li>
+<li class="observablehq-secondary-link"><a href="#creacion-de-repositorios-a-lo-largo-de-los-anos">Creación de repositorios a lo largo de los años</a></li>
+<li class="observablehq-secondary-link"><a href="#los-10-mejores-repositorios-segun-sus-estrellas">Los 10 mejores repositorios según sus estrellas</a></li>
+<li class="observablehq-secondary-link"><a href="#relacion-fork-star-por-lenguaje-de-programacion">Relación Fork-Star por lenguaje de programación</a></li>
+<li class="observablehq-secondary-link"><a href="#determinacion-optima-del-grupo-analisis-del-metodo-del-codo">Determinación óptima del grupo: análisis del método del codo</a></li>
 </ol>
 </nav>
 </aside>
@@ -290,32 +317,36 @@ Plot.plot({
 <div class="observablehq observablehq--block"><!--:d26c6f24:--></div>
 <div class="grid grid-cols-4 gap-4">
   <div class="card">
-    <h3>Total Repositories</h3>
+    <h3>Número total de repositorios analizados</h3>
     <p class="big-number"><observablehq-loading></observablehq-loading><!--:b32b4ce0:--></p>
   </div>
   <div class="card">
-    <h3>Average Stars</h3>
+    <h3>Promedio de estrellas</h3>
     <p class="big-number"><observablehq-loading></observablehq-loading><!--:a18f1ffa:--></p>
   </div>
   <div class="card">
-    <h3>Average Forks</h3>
+    <h3>Promedio de Forks</h3>
     <p class="big-number"><observablehq-loading></observablehq-loading><!--:963787a5:--></p>
   </div>
   <div class="card">
-    <h3>Average Issues</h3>
+    <h3>Promedio de issues/problemas</h3>
     <p class="big-number"><observablehq-loading></observablehq-loading><!--:6772c59a:--></p>
   </div>
 </div>
-<h2 id="languages-distribution" tabindex="-1"><a class="observablehq-header-anchor" href="#languages-distribution">Languages Distribution</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2ef8106b:--></div>
-<h2 id="repository-creation-over-years" tabindex="-1"><a class="observablehq-header-anchor" href="#repository-creation-over-years">Repository Creation Over Years</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2aa944eb:--></div>
-<h2 id="top-10-repositories-by-stars" tabindex="-1"><a class="observablehq-header-anchor" href="#top-10-repositories-by-stars">Top 10 Repositories by Stars</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:14a462e2:--></div>
-<h2 id="fork-star-ratio-by-language" tabindex="-1"><a class="observablehq-header-anchor" href="#fork-star-ratio-by-language">Fork-Star Ratio by Language</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:82391758:--></div>
-<h2 id="repository-clusters-analysis" tabindex="-1"><a class="observablehq-header-anchor" href="#repository-clusters-analysis">Repository Clusters Analysis</a></h2>
-<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2b46146a:--></div>
+<h2 id="distribucion-de-lenguajes-de-programacion" tabindex="-1"><a class="observablehq-header-anchor" href="#distribucion-de-lenguajes-de-programacion">Distribución de lenguajes de programación</a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:2de77ce0:--></div>
+<h2 id="creacion-de-repositorios-a-lo-largo-de-los-anos" tabindex="-1"><a class="observablehq-header-anchor" href="#creacion-de-repositorios-a-lo-largo-de-los-anos">Creación de repositorios a lo largo de los años</a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:e7b1c1a3:--></div>
+<h2 id="los-10-mejores-repositorios-segun-sus-estrellas" tabindex="-1"><a class="observablehq-header-anchor" href="#los-10-mejores-repositorios-segun-sus-estrellas">Los 10 mejores repositorios según sus estrellas</a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:0be4cdb7:--></div>
+<h2 id="relacion-fork-star-por-lenguaje-de-programacion" tabindex="-1"><a class="observablehq-header-anchor" href="#relacion-fork-star-por-lenguaje-de-programacion">Relación Fork-Star por lenguaje de programación</a></h2>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:cda14bc2:--></div>
+<h2 id="determinacion-optima-del-grupo-analisis-del-metodo-del-codo" tabindex="-1"><a class="observablehq-header-anchor" href="#determinacion-optima-del-grupo-analisis-del-metodo-del-codo">Determinación óptima del grupo: análisis del método del codo</a></h2>
+<div class="explanation-box">
+  <p>El Método del Codo nos ayuda a identificar el número ideal de clústeres para agrupar repositorios con características similares. El gráfico muestra cómo la Suma de Cuadrados Dentro del Clúster (WCSS) disminuye a medida que añadimos más clústeres. El "elbow point" (highlighted in red) at k=<observablehq-loading></observablehq-loading><!--:f052b6c0:--> representa el equilibrio óptimo entre simplicidad y precisión, donde añadir más clústeres produce rendimientos decrecientes.</p>
+  <p>Nuestro análisis confirma que las distintas categorías de repositorios (<observablehq-loading></observablehq-loading><!--:f052b6c0-1:-->) capturan los patrones naturales en las métricas de los repositorios de GitHub, en consonancia con nuestra clasificación de repositorios  del tipo Standard, Popular, and Superstar.</p>
+</div>
+<div class="observablehq observablehq--block"><observablehq-loading></observablehq-loading><!--:8bf91824:--></div>
 <style>
 .card {
   background: white;
@@ -334,7 +365,7 @@ Plot.plot({
 </main>
 <footer id="observablehq-footer">
 <nav><a rel="prev" href="./"><span>analizer</span></a></nav>
-<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-04-11T13:35:15">Apr 11, 2025</a>.</div>
+<div>Built with <a href="https://observablehq.com/" target="_blank" rel="noopener noreferrer">Observable</a> on <a title="2025-04-11T14:28:57">Apr 11, 2025</a>.</div>
 </footer>
 </div>
 </body>
