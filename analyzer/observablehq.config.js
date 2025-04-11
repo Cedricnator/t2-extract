@@ -36,3 +36,8 @@ export default {
   // preserveExtension: false, // drop .html from URLs
   // preserveIndex: false, // drop /index from URLs
 };
+
+
+
+
+
